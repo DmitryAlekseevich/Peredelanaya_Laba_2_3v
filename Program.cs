@@ -71,9 +71,9 @@ namespace Peredelanaya_Laba_2_3v
         }
         public ResearchTeam()
         {
-            _nazvanieisled = "Ленин был грибом";
-            _nazvanieorg = "Загадка жака фрески";
-            _regnomer = 1;
+            _nazvanieisled = "Ленин был грибом?!";
+            _nazvanieorg = "Загадка жака фрески ";
+            _regnomer = 288;
             //_prodoljitelnost = new TimeFrame(10-20);
             _papers = new[] { new Paper() };
         }
@@ -98,7 +98,7 @@ namespace Peredelanaya_Laba_2_3v
         }
         public string ToFullString(bool isArticles = true)
         {
-            return $"Название темы исследования: {NazvanieISL}\n Название организации: {NazvanieORG}\n Номер регистрации " +
+            return $" Название темы исследования: {NazvanieISL}\n Название организации: {NazvanieORG}\n Номер регистрации " +
                 $"{Regnomer}\n Продолжительность иследования: {Prodoljitelnost.ToString()}";
 
         }
