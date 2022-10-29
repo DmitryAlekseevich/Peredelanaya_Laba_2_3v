@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+
 
 namespace Peredelanaya_Laba_2_3v
 
@@ -42,12 +45,12 @@ namespace Peredelanaya_Laba_2_3v
         public Paper()
         {
             Nazvanie = "ООО Колобок";
-            Avtor = new("Великий неподкупный");
-            Data = 29.06;
+          //  Avtor = new("Великий неподкупный");
+          //  Data = new DateTime(9.06);
         }
         public string ToFullString()
         {
-            return $"{Nazvanie.Surname} {Avtor.Name} - {Title}. Дата публикации: {Data}";
+            return $"{Nazvanie} {Avtor} - Дата публикации: {Data}";
         }
     }
     public class ResearchTeam
@@ -71,7 +74,7 @@ namespace Peredelanaya_Laba_2_3v
             _nazvanieisled = "Ленин был грибом";
             _nazvanieorg = "Загадка жака фрески";
             _regnomer = 1;
-            _prodoljitelnost = new TimeFrame (10-20);
+            //_prodoljitelnost = new TimeFrame(10-20);
             _papers = new[] { new Paper() };
         }
         public string NazvanieISL => _nazvanieisled;
@@ -82,17 +85,16 @@ namespace Peredelanaya_Laba_2_3v
         public Paper? MiddleRating
         {
             get
-            {
-                if (_papers is null)
+            {              
+               // return string.Join(",", Papers.Select(p => p.Publication)); //возвращает ссылку на публикацию с самой поздней датой выхода           
                 {
                     return null;
                 }
-                return _papers.Sum(x => x.Data) / _papers.Length; //дата публикации
             }
         }
         public void AddPapers(params Paper[] papers)
         {
-            _papers = papers;
+            papers = papers;
         }
         public string ToFullString(bool isArticles = true)
         {
