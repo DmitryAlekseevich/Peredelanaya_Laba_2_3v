@@ -43,7 +43,7 @@ namespace Peredelanaya_Laba_2_3v
         {
             Nazvanie = "ООО Колобок";
             Avtor = new("Великий неподкупный");
-            Data = 29.06.2000;
+            Data = 29.06;
         }
         public string ToFullString()
         {
@@ -90,7 +90,7 @@ namespace Peredelanaya_Laba_2_3v
                 return _papers.Sum(x => x.Data) / _papers.Length; //дата публикации
             }
         }
-        public void AddArticles(params Paper[] papers)
+        public void AddPapers(params Paper[] papers)
         {
             _papers = papers;
         }
