@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Data;
+using System.IO;
 
 
 namespace Peredelanaya_Laba_2_3v
@@ -15,7 +17,7 @@ namespace Peredelanaya_Laba_2_3v
             Console.WriteLine(researchTeam.ToFullString());
         }
     }
-    public enum TimeFrame { Year, TwoYears, Long }
+    public enum TimeFrame { Год, Двагода, Долго }
 
     public class Person
     {
@@ -45,8 +47,8 @@ namespace Peredelanaya_Laba_2_3v
         public Paper()
         {
             Nazvanie = "ООО Колобок";
-          //  Avtor = new("Великий неподкупный");
-          //  Data = new DateTime(9.06);
+            Avtor = new("Великий","неподкупный");
+            Data = new DateTime(9,06, 1);
         }
         public string ToFullString()
         {
@@ -74,7 +76,7 @@ namespace Peredelanaya_Laba_2_3v
             _nazvanieisled = "Ленин был грибом?!";
             _nazvanieorg = "Загадка жака фрески ";
             _regnomer = 288;
-            //_prodoljitelnost = new TimeFrame(10-20);
+            //_prodoljitelnost = new TimeFrame(2018, 09, 01, 8, 30, 01);           
             _papers = new[] { new Paper() };
         }
         public string NazvanieISL => _nazvanieisled;
