@@ -51,7 +51,15 @@ namespace Peredelanaya_Laba_2_3v
         {
             Nazvanie = "ООО Колобок";
             Avtor = new("Великий", "неподкупный");
-            Data = new DateTime(9, 06, 1);
+            Data = new DateTime(2015, 7, 20, 18, 20, 25);
+
+            Nazvanie = "Космический нинздя";
+            Avtor = new("Тот", "самый");
+            Data = new DateTime(2017, 6, 20, 18, 30, 25);
+
+            Nazvanie = "Гидротрансформатор";
+            Avtor = new("Клим", "Саныч");
+            Data = new DateTime(2016, 7, 20, 11, 30, 25);
         }
         public string ToFullString()
         {
@@ -64,7 +72,7 @@ namespace Peredelanaya_Laba_2_3v
         private readonly string _nazvanieorg;
         private readonly int _regnomer;
         private readonly TimeFrame _prodoljitelnost;
-        private readonly Paper[] _papers;
+        private Paper[] _papers;
 
         public ResearchTeam(string nazvanieisled, string nazvanieorg, int regnomer, TimeFrame prodoljitelnost)
         {
@@ -86,32 +94,43 @@ namespace Peredelanaya_Laba_2_3v
         public string NazvanieORG => _nazvanieorg;
         public int Regnomer => _regnomer;
         public TimeFrame Prodoljitelnost => _prodoljitelnost;
-        public Paper[] Papers => _papers;
-        //todo: нужно свойство типа Paper ( только с методом get), которое возвращает ссылку на публикацию с самой поздней датой выхода; если список публикаций пустой, свойство возвращает значение null;
+        public Paper Papers => _papers is null ? null : _papers.OrderBy(x => x.Data).Last(); //возвращает ссылку на публикацию с самой поздней датой выхода  
 
-        //public double MiddleRating
+        //нужно свойство типа Paper ( только с методом get), которое возвращает ссылку на публикацию с самой поздней датой выхода; если список публикаций пустой, свойство возвращает значение null;
+
+        //public double Paper
         //{
         //    get
         //    {              
-        //       // return string.Join(",", Papers.Select(p => p.Publication)); //возвращает ссылку на публикацию с самой поздней датой выхода           
+        //       return string.Join(",", Papers.Select(p => p.Publication)); //возвращает ссылку на публикацию с самой поздней датой выхода           
         //        {
-
         //            return 0;
         //        }
         //    }
         //}
+
         public void AddPapers(params Paper[] papers)
         {
-            //todo: добавление статей не равно замена массив, нужно расширить старый (выделить новый блок памяти) размером = старый массив + новый, затем скопировать элементы старого и потом нового
-
-            papers = papers;
+            int length = _papers.Length + papers.Length;
+            Paper[] newPapers = new Paper[length];
+            for (int i = 0; i < _papers.Length; i++)
+            {
+                newPapers[i] = _papers[i];
+            }
+            for (int i = _papers.Length; i < papers.Length; i++)
+            {
+                newPapers[i] = papers[i];
+            }
+            _papers = newPapers;
         }
+
         public string ToFullString(bool isArticles = true)
         {
             return $" Название темы исследования: {NazvanieISL}\n Название организации: {NazvanieORG}\n Номер регистрации " +
                 $"{Regnomer}\n Продолжительность иследования: {Prodoljitelnost.ToString()}";
 
         }
+
         public string ToShortString()
         {
             return $"{ToFullString(false)}\n";
