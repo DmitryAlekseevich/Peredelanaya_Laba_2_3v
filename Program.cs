@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using System.Data;
-using System.IO;
-
 
 namespace Peredelanaya_Laba_2_3v
 
@@ -15,6 +10,14 @@ namespace Peredelanaya_Laba_2_3v
         {
             ResearchTeam researchTeam = new();
             Console.WriteLine(researchTeam.ToFullString());
+
+            //todo:дописать мейн
+            /*
+             • Присвоить значения всем определенным в типе ResearchTeam свойствам, преобразовать данные в текстовый вид с помощью метода ToString() и вывести данные.
+• С помощью метода AddPapers (params Paper []) добавить элементы в список публикаций и вывести данные объекта ResearchTeam.
+• Вывести значение свойства, которое возвращает ссылку на публикацию с самой поздней датой выхода;
+
+             */
         }
     }
     public enum TimeFrame { Год, Двагода, Долго }
@@ -34,7 +37,7 @@ namespace Peredelanaya_Laba_2_3v
     }
     public class Paper
     {
-        public string Nazvanie { get; } 
+        public string Nazvanie { get; }
         public Person Avtor { get; }
         public DateTime Data { get; }
 
@@ -47,8 +50,8 @@ namespace Peredelanaya_Laba_2_3v
         public Paper()
         {
             Nazvanie = "ООО Колобок";
-            Avtor = new("Великий","неподкупный");
-            Data = new DateTime(9,06, 1);
+            Avtor = new("Великий", "неподкупный");
+            Data = new DateTime(9, 06, 1);
         }
         public string ToFullString()
         {
@@ -62,21 +65,21 @@ namespace Peredelanaya_Laba_2_3v
         private readonly int _regnomer;
         private readonly TimeFrame _prodoljitelnost;
         private readonly Paper[] _papers;
-      
+
         public ResearchTeam(string nazvanieisled, string nazvanieorg, int regnomer, TimeFrame prodoljitelnost)
         {
             _nazvanieisled = nazvanieisled;
             _nazvanieorg = nazvanieorg;
             _regnomer = regnomer;
             _prodoljitelnost = prodoljitelnost;
-            
+
         }
         public ResearchTeam()
         {
             _nazvanieisled = "Ленин был грибом?!";
             _nazvanieorg = "Загадка жака фрески ";
             _regnomer = 288;
-            //_prodoljitelnost = new TimeFrame(2018, 09, 01, 8, 30, 01);           
+            _prodoljitelnost = TimeFrame.Двагода;
             _papers = new[] { new Paper() };
         }
         public string NazvanieISL => _nazvanieisled;
@@ -84,18 +87,23 @@ namespace Peredelanaya_Laba_2_3v
         public int Regnomer => _regnomer;
         public TimeFrame Prodoljitelnost => _prodoljitelnost;
         public Paper[] Papers => _papers;
-        public Paper? MiddleRating
-        {
-            get
-            {              
-               // return string.Join(",", Papers.Select(p => p.Publication)); //возвращает ссылку на публикацию с самой поздней датой выхода           
-                {
-                    return null;
-                }
-            }
-        }
+        //todo: нужно свойство типа Paper ( только с методом get), которое возвращает ссылку на публикацию с самой поздней датой выхода; если список публикаций пустой, свойство возвращает значение null;
+
+        //public double MiddleRating
+        //{
+        //    get
+        //    {              
+        //       // return string.Join(",", Papers.Select(p => p.Publication)); //возвращает ссылку на публикацию с самой поздней датой выхода           
+        //        {
+
+        //            return 0;
+        //        }
+        //    }
+        //}
         public void AddPapers(params Paper[] papers)
         {
+            //todo: добавление статей не равно замена массив, нужно расширить старый (выделить новый блок памяти) размером = старый массив + новый, затем скопировать элементы старого и потом нового
+
             papers = papers;
         }
         public string ToFullString(bool isArticles = true)
@@ -107,7 +115,6 @@ namespace Peredelanaya_Laba_2_3v
         public string ToShortString()
         {
             return $"{ToFullString(false)}\n";
-               
         }
     }
 }
