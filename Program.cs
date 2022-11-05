@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Peredelanaya_Laba_2_3v
 
@@ -61,6 +62,12 @@ namespace Peredelanaya_Laba_2_3v
             Avtor = new("Клим", "Саныч");
             Data = new DateTime(2016, 7, 20, 11, 30, 25);
         }
+
+        public override string ToString()
+        {
+            return Nazvanie + ' ' + Avtor.Name + ' '  + Data.ToString("dd.mm.yyyy");
+        }
+
         public string ToFullString()
         {
             return $"{Nazvanie} {Avtor} - Дата публикации: {Data}";
@@ -94,22 +101,22 @@ namespace Peredelanaya_Laba_2_3v
         public string NazvanieORG => _nazvanieorg;
         public int Regnomer => _regnomer;
         public TimeFrame Prodoljitelnost => _prodoljitelnost;
-        public Paper Papers => _papers is null ? null : _papers.OrderBy(x => x.Data).Last(); //возвращает ссылку на публикацию с самой поздней датой выхода  
+        public Paper Papers => _papers is null ? null : _papers.OrderBy(x => x.Data).Last(); 
 
         //нужно свойство типа Paper ( только с методом get), которое возвращает ссылку на публикацию с самой поздней датой выхода; если список публикаций пустой, свойство возвращает значение null;
 
-        //public double Paper
-        //{
-        //    get
-        //    {              
-        //       return string.Join(",", Papers.Select(p => p.Publication)); //возвращает ссылку на публикацию с самой поздней датой выхода           
-        //        {
-        //            return 0;
-        //        }
-        //    }
-        //}
+        public double Paper
+        {
+            get
+            {              
+               return string.Join(",", Papers.Select(i => i.Publication)); //возвращает ссылку на публикацию с самой поздней датой выхода           
+                {
+                    return 0;
+                }
+            }
+        }
 
-        public void AddPapers(params Paper[] papers)
+        public void AddPapers(params Paper[] papers) // метод для добавления элементов в список публикации
         {
             int length = _papers.Length + papers.Length;
             Paper[] newPapers = new Paper[length];
